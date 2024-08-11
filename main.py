@@ -1,6 +1,6 @@
 """Main module."""
 
-from address_book import AddressBook
+from serialize import save_data, load_data
 from helpers import parse_input
 from actions import (
     add_contact,
@@ -17,7 +17,7 @@ def main():
     """
     The main function that serves as the entry point for the application.
     """
-    book = AddressBook()
+    book = load_data()
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
@@ -25,6 +25,7 @@ def main():
 
         if command in ["close", "exit"]:
             print("Good bye!")
+            save_data(book)
             break
 
         if command == "hello":
